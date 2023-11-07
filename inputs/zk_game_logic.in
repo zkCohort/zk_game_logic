@@ -1,0 +1,3 @@
+// The program input for zk_game_logic/src/main.leo
+[get_hand_ranking_combination]
+hand: u64 = 115u64;
