@@ -30,3 +30,6 @@ The program returns the winning combination in u64 format.
 ```bash
 leo run get_hand_ranking_combination 115u64
 ```
+
+## Get in touch
+Discord: Genie#6248
