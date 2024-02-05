@@ -1,5 +1,7 @@
 program zk_game_logic.aleo {
 	transition get_hand_ranking_combination(public hand: u64) -> u64 {
+    let ones: u8 = count_ones(hand);
+    assert_eq(ones, 7u8);
 
     let winning_combination : u64 = get_royal_flush(hand);
 
@@ -627,5 +629,18 @@ program zk_game_logic.aleo {
     let has_hand_combination : bool = hand_combination == combination;
     
     return has_hand_combination;
+  }
+
+  inline count_ones(n: u64) -> u8 {
+    let count: u8 = 0u8;
+
+    for i: u8 in 0u8..64u8 {
+        if n & 1u64 == 1u64 {
+            count += 1u8;
+        }
+        n = n >> 1u8; // Shift right by one bit
+    }
+
+    return count;
   }
 }
