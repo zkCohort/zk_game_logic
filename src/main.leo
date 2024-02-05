@@ -1,12 +1,37 @@
 program zk_game_logic.aleo {
 	transition get_hand_ranking_combination(public hand: u64) -> u64 {
-    let winning_combination : u64 = get_four_of_a_kind(hand);
+
+    let winning_combination : u64 = get_royal_flush(hand);
+
+    if winning_combination != 0u64 {
+        return winning_combination;
+    }
+
+    winning_combination = get_straight_flush(hand);
+
+    if winning_combination != 0u64 {
+        return winning_combination;
+    }
+
+    winning_combination = get_four_of_a_kind(hand);
 
     if winning_combination != 0u64 {
         return winning_combination;
     }
 
     winning_combination = get_full_house_combination(hand);
+
+    if winning_combination != 0u64 {
+        return winning_combination;
+    }
+
+    winning_combination = get_flush(hand);
+
+    if winning_combination != 0u64 {
+        return winning_combination;
+    }
+
+    winning_combination = get_straight(hand);
 
     if winning_combination != 0u64 {
         return winning_combination;
@@ -30,6 +55,20 @@ program zk_game_logic.aleo {
         return winning_combination;
     }
 
+    winning_combination = get_high_card(hand);
+
+    if winning_combination != 0u64 {
+        return winning_combination;
+    }
+
+    return 0u64;
+  }
+
+  inline get_royal_flush(hand: u64) -> u64 {
+    return 0u64;
+  }
+
+  inline get_straight_flush(hand: u64) -> u64 {
     return 0u64;
   }
   
@@ -97,6 +136,14 @@ program zk_game_logic.aleo {
     let full_house : u64 = three_of_a_kind | pair;
 
     return full_house;
+  }
+  
+  inline get_flush(hand: u64) -> u64 {
+    return 0u64;
+  }
+  
+  inline get_straight(hand: u64) -> u64 {
+    return 0u64;
   }
 
   inline get_three_of_a_kind(hand: u64) -> u64 {
@@ -568,6 +615,10 @@ program zk_game_logic.aleo {
       return 12u64; // 2s - Clubs and Spades
     }
 
+    return 0u64;
+  }
+
+  inline get_high_card(hand: u64) -> u64 {
     return 0u64;
   }
 
